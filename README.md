@@ -1,4 +1,4 @@
-# it3105_a3_2024_malinao
+# Journal_App
 
 A new Flutter project.
 
