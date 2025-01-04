@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 class JournalApp extends StatefulWidget {
+  const JournalApp({super.key});
+
   @override
   _JournalAppState createState() => _JournalAppState();
 }
@@ -43,21 +45,21 @@ class _JournalAppState extends State<JournalApp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('What\'s on your mind?'),
+          title: const Text('What\'s on your mind?'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Title',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _textController,
                 maxLines: 3,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Write your entry here...',
                 ),
               ),
@@ -68,7 +70,7 @@ class _JournalAppState extends State<JournalApp> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -79,7 +81,7 @@ class _JournalAppState extends State<JournalApp> {
                 );
                 Navigator.of(context).pop();
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         );
@@ -96,21 +98,21 @@ class _JournalAppState extends State<JournalApp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Entry'),
+          title: const Text('Edit Entry'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _editTitleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Title',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: _editTextController,
                 maxLines: 3,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Write your entry here...',
                 ),
               ),
@@ -121,7 +123,7 @@ class _JournalAppState extends State<JournalApp> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -133,7 +135,7 @@ class _JournalAppState extends State<JournalApp> {
                 );
                 Navigator.of(context).pop();
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -146,21 +148,21 @@ class _JournalAppState extends State<JournalApp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Entry'),
-          content: Text('Are you sure you want to delete this entry?'),
+          title: const Text('Delete Entry'),
+          content: const Text('Are you sure you want to delete this entry?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 _removeEntry(index);
                 Navigator.of(context).pop();
               },
-              child: Text('Delete'),
+              child: const Text('Delete'),
             ),
           ],
         );
@@ -216,7 +218,7 @@ class _JournalAppState extends State<JournalApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Journal'),
+        title: const Text('My Journal'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -225,11 +227,10 @@ class _JournalAppState extends State<JournalApp> {
           children: [
             ElevatedButton(
               onPressed: _addEntry,
-              child: Text('Add an Entry'),
+              child: const Text('Add an Entry'),
             ),
-            SizedBox(height: 16.0),
-            if (entries.isEmpty)
-              Text('No entries so far.'),
+            const SizedBox(height: 16.0),
+            if (entries.isEmpty) const Text('No entries so far.'),
             Expanded(
               child: ListView.builder(
                 itemCount: entries.length,
@@ -250,38 +251,37 @@ class _JournalAppState extends State<JournalApp> {
                             children: [
                               Text(
                                 entry['title'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 _formatDate(entry['date']),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14.0,
                                   color: Colors.grey,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             entry['text'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
                                 onPressed: () => _editEntry(index),
-                                child: Text('Edit'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF28A745),
+                                  backgroundColor: const Color(0xFF28A745),
                                   foregroundColor: Colors.white,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0,
                                     vertical: 8.0,
                                   ),
@@ -289,15 +289,15 @@ class _JournalAppState extends State<JournalApp> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
+                                child: Text('Edit'),
                               ),
-                              SizedBox(width: 8.0),
+                              const SizedBox(width: 8.0),
                               ElevatedButton(
                                 onPressed: () => _deleteEntry(index),
-                                child: Text('Delete'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFDC3545),
+                                  backgroundColor: const Color(0xFFDC3545),
                                   foregroundColor: Colors.white,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0,
                                     vertical: 8.0,
                                   ),
@@ -305,6 +305,7 @@ class _JournalAppState extends State<JournalApp> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
+                                child: Text('Delete'),
                               ),
                             ],
                           ),
